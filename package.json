@@ -11,6 +11,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "discord.js": "^11.4.2",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^4.13.18",
+    "pug": "^2.0.3"
   }
 }
