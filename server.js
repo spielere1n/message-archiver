@@ -24,11 +24,16 @@ app.set('view engine', 'pug');
 
 //Read
 app.get('/', (req, res) => {
+    message = [];
+
     Msg.find((err, msg) => {
         if(err) {
             console.log(err);
         } else {
-            res.json(msg);
+            for(var i = 0; i < msg.length; i++) {
+                message.push(msg[i].message);
+            }
+            res.json(message);
         }
     });
 });
