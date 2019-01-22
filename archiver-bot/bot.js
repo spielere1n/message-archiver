@@ -20,13 +20,17 @@ bot.on('message', (message) => {
     const command = args.shift().toLowerCase();
 
     if(command === 'archive') {
-        channel.fetchMessage(args[0])
-            .then(fetchedMessage =>  {
+        message.channel.fetchMessage(args[0])
+            .then(message =>  {
                 /*message is already a resolved promise, why are you resolving it again?
                 also, don't use the same name in your then event as in the message event
                 change it to msg or fetchedMessage or something else and then do everything, 
                 including saving the content to your db, inside the then event*/
-                let msg = new Msg(message.content);
+
+                console.log(message.content);
+
+                let msg = new Msg();
+                msg.message = message.content;
                 msg.save((err) => {
                     if(err) {
                         return handleError(err);
@@ -34,16 +38,8 @@ bot.on('message', (message) => {
                         console.log('success');
                     }
                 });
-
-                console.log(message.content);
             })
             .catch(console.error);
-        //let json = JSON.parse(dm);
-        //console.log(json);
-        //Promise.resolve(dm);
-       
-        
-        
 
         message.reply('Message successfully archived');
     }
