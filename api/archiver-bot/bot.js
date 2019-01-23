@@ -34,7 +34,11 @@ bot.on('message', (message) => {
             })
             .catch(console.error);
 
-        message.reply('Message successfully archived');
+        message.reply('Message successfully archived')
+            .then(message => {
+                message.delete(5000);
+            })
+            .catch(console.error);
     }
 
     if(command === 'shane'){

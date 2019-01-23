@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const bot = require('./archiver-bot/bot');
 const mongoose = require('mongoose');
 const config = require('./config/database');
@@ -19,6 +20,7 @@ db.once('open', () => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 app.set('view engine', 'pug');
 
@@ -30,9 +32,9 @@ app.get('/', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            for(var i = 0; i < msg.length; i++) {
+            /*for(var i = 0; i < msg.length; i++) {
                 message.push(msg[i].message);
-            }
+            }*/
             res.json(message);
         }
     });
