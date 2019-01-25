@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 //Connect db
-mongoose.connect(config.database);
+mongoose.connect(config.database, {useNewUrlParser: true});
 const db = mongoose.connection;
 db.once('open', () => {
     console.log('Connection established');
