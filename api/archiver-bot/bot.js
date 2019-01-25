@@ -12,11 +12,11 @@ bot.on('ready', () => {
 });
 
 bot.on('message', (message) => {
-    const channel = bot.channels.get('537131544821628929');
+    const channel = bot.channels.get('495069385569075214');
     const args = message.content.slice(config.prefix.length).split(' ');
     const command = args.shift().toLowerCase();
 
-    if(command === 'archive') {
+    if(command === 'archie') {
         message.channel.fetchMessage(args[0])
             .then(message =>  {
 
