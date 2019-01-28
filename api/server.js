@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
             for(var i = 0; i < msg.length; i++) {
                 message.push(msg[i].message);
             }
-            res.render('index', {'message': message});
+            res.json(message);
         }
     });
 });

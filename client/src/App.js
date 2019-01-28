@@ -7,33 +7,21 @@ class App extends Component {
   
   constructor (props) {
     super(props);
-    this.messageList = this.messageList.bind(this);
 
     this.state = {messages: []};
   }
 
   componentDidMount() {
     axios.get('http://localhost:4000')
-        .then(res => {
-            this.setState({ messages: res.data });
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        .then(res => res.json())
+        .then(messages => this.setState({messages}))
+        .catch(err => console.log(err))
   }
 
-  messageList() {
+  /*messageList() {
     return this.state.messages.map((message, i) => {
         return <li key={i}>{message}</li>
     });
-  }
-
- /*nameList = () => {
-    let names = ['jerry', 'marshall', 'bob'];
-    let list = names.map(name => {
-      return <li>{name}</li>
-    });
-    return <ul>{list}</ul>
   }*/
   
   render() {
@@ -42,7 +30,9 @@ class App extends Component {
       <div>
         <h3>Messages</h3>
         <ul>
-          { this.messageList() }
+          {this.state.messages.map(message => 
+            <li key={message.id}>{message}</li>  
+          )}
         </ul>
       </div>
       //</div>
