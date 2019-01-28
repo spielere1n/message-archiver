@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
@@ -7,12 +7,12 @@ class App extends Component {
   
   constructor (props) {
     super(props);
-    this.nameList = this.nameList.bind(this);
+    this.messageList = this.messageList.bind(this);
+
+    this.state = {messages: []};
   }
 
-  //state = { messages: [] }
-
-  /*componentDidMount() {
+  componentDidMount() {
     axios.get('http://localhost:4000')
         .then(res => {
             this.setState({ messages: res.data });
@@ -20,19 +20,31 @@ class App extends Component {
         .catch(err => {
             console.log(err);
         });
-}*/
-  nameList = () => {
+  }
+
+  messageList() {
+    return this.state.messages.map((message, i) => {
+        return <li key={i}>{message}</li>
+    });
+  }
+
+ /*nameList = () => {
     let names = ['jerry', 'marshall', 'bob'];
     let list = names.map(name => {
       return <li>{name}</li>
     });
     return <ul>{list}</ul>
-  }
+  }*/
   
   render() {
     return (
       //<div className="App">
-      <div>{this.nameList()}</div>
+      <div>
+        <h3>Messages</h3>
+        <ul>
+          { this.messageList() }
+        </ul>
+      </div>
       //</div>
     );
   }

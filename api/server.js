@@ -32,10 +32,10 @@ app.get('/', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            /*for(var i = 0; i < msg.length; i++) {
+            for(var i = 0; i < msg.length; i++) {
                 message.push(msg[i].message);
-            }*/
-            res.json(message);
+            }
+            res.render('index', {'message': message});
         }
     });
 });
